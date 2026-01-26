@@ -1,10 +1,59 @@
-body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    margin: 40px;
-    background-color: #f4f4f4;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
+body {
+    font-family: 'Poppins', sans-serif; /* Clean body font */
+    background-color: #f8f9fa;
     color: #333;
+    padding-top: 80px; /* Space for the fixed header */
+}
+
+/* Header Styling */
+header {
+    background-color: #2d3436; /* Dark slate */
+    color: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-family: 'Righteous', cursive; /* The "Fun" font */
+    font-size: 1.5rem;
+    color: #00d2d3;
+}
+
+/* Navigation Links */
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00d2d3; /* Changes color when you hover */
+}
+
+main {
+    padding: 2rem 5%;
 }
