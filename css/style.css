@@ -42,6 +42,8 @@ h1, .page-title {
     color: var(--nav-bg);
 }
 
+
+
 /* ==========================================================================
    3. NAVIGATION (Global Header)
    ========================================================================== */
@@ -81,6 +83,24 @@ nav ul li a {
 
 nav ul li a:hover {
     color: var(--accent-teal);
+}
+
+.nav-gif {
+    height: 40px; /* Adjust this based on how big your GIFs are */
+    width: auto;  /* Keeps the aspect ratio perfect */
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover effect for the GIFs */
+nav ul li a:hover .nav-gif {
+    transform: scale(1.1); /* Makes the GIF pop out slightly */
+    filter: brightness(1.2); /* Makes it glow slightly */
+}
+
+/* Ensure the list items align the images vertically */
+nav ul {
+    align-items: center;
 }
 
 /* ==========================================================================
