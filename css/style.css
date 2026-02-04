@@ -1,4 +1,19 @@
-/* General Reset */
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+:root {
+    /* Colors */
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --nav-bg: #2c3e50;
+    --accent-teal: #00d2d3;
+    --white: #ffffff;
+
+    /* Fonts */
+    --font-main: 'Poppins', sans-serif;
+    --font-hand: 'Reenie Beanie', cursive;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,16 +21,33 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif; /* Clean body font */
-    background-color: #f8f9fa;
-    color: #333;
-    padding-top: 80px; /* Space for the fixed header */
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 80px; /* Space for fixed header */
 }
 
-/* Header Styling */
+/* ==========================================================================
+   2. TYPOGRAPHY (The "Reenie Beanie" Sections)
+   ========================================================================== */
+h1, .page-title, .logo, .project-square h3 {
+    font-family: var(--font-hand);
+}
+
+h1, .page-title {
+    font-size: 5rem;
+    text-align: center;
+    margin: 40px 0;
+    color: var(--nav-bg);
+}
+
+/* ==========================================================================
+   3. NAVIGATION (Global Header)
+   ========================================================================== */
 header {
-    background-color: #2d3436; /* Dark slate */
-    color: white;
+    background: var(--nav-bg);
+    color: var(--white);
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
@@ -24,90 +56,87 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Update your Logo to use Reenie Beanie */
 .logo {
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 2.5rem; /* You might need to make it larger because this font is thin */
-    color: #00d2d3;
+    font-size: 2.5rem;
+    color: var(--accent-teal);
 }
 
-/* Update all H1 Titles (the ones at the top of your pages) */
-h1 {
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 4rem; /* Handwriting fonts usually look better when they are big */
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50;
+nav ul {
+    display: flex;
+    list-style: none;
 }
 
-/* If you want the navigation links to also be fun */
+nav ul li {
+    margin-left: 20px;
+}
+
 nav ul li a {
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 1.5rem;
-    color: white;
+    color: var(--white);
     text-decoration: none;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
 nav ul li a:hover {
-    color: #00d2d3; /* Changes color when you hover */
+    color: var(--accent-teal);
 }
 
-main {
-    padding: 2rem 5%;
-}
-
-/* Page Header Font */
-.page-title {
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 5rem;
-    text-align: center;
-    margin: 40px 0;
-}
-
-/* The 3-Column Grid */
-.projects-container {
+/* ==========================================================================
+   4. LAYOUTS (The 3-Column Grid)
+   ========================================================================== */
+/* We use one class for both Projects and Houdini to keep it clean */
+.projects-container, .gallery-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Exactly 3 columns */
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 columns */
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
-/* Individual Project Square */
-.project-square {
+.project-square, .gallery-item {
     text-align: center;
+    background: var(--white);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
 }
 
-.project-square img {
+.project-square:hover, .gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.project-square img, .gallery-item img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Makes the image a perfect square */
+    aspect-ratio: 1 / 1; /* Keeps them as perfect squares */
     object-fit: cover;
-    border: 2px solid #2c3e50;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 .project-square h3 {
-    font-family: 'Reenie Beanie', cursive;
     font-size: 2.5rem;
-    margin-top: 10px;
-    color: #2c3e50;
+    margin-top: 15px;
+    color: var(--nav-bg);
 }
 
-/* Mobile adjust: drops to 1 column so it stays readable on phones */
-@media (max-width: 768px) {
-    .projects-container {
-        grid-template-columns: 1fr;
+/* ==========================================================================
+   5. MOBILE RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 900px) {
+    .projects-container, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-container, .gallery-grid {
+        grid-template-columns: 1fr; /* 1 column for phones */
+    }
+    h1, .page-title {
+        font-size: 3.5rem;
     }
 }
