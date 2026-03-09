@@ -7,50 +7,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Ensuring the header stays visible and on top */
-        #header-placeholder {
-            position: relative;
-            z-index: 1000;
-        }
-
-        /* The container becomes the scattered area */
+        /* Setup the container to allow scattered photos */
         .projects-container {
             position: relative;
             width: 100%;
             height: 100vh; /* Gives space for images to be 'dropped' */
             padding: 50px;
+            overflow: hidden; /* Keeps the text overlay contained */
         }
 
-        /* Each project-square becomes a scattered photo */
+        /* Styling for each 'photo' square */
         .project-square {
             position: absolute;
             background: white;
             padding: 10px;
             box-shadow: 5px 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            z-index: 1; /* Normal stacking order */
         }
 
         .project-square img {
             display: block;
-            width: 250px; /* Control image size here */
+            width: 280px; /* Control image size here */
             height: auto;
         }
 
-        /* Hide the text content as requested */
+        /* 1. Hide the original project text */
         .project-square h3, 
         .project-square body {
             display: none;
         }
 
         /* Specific Fixed Positions (These won't change on refresh) */
-        .project-square:nth-child(1) { top: 10%; left: 5%;  transform: rotate(-5deg); }
-        .project-square:nth-child(2) { top: 25%; left: 55%; transform: rotate(8deg); }
-        .project-square:nth-child(3) { top: 50%; left: 15%; transform: rotate(-10deg); }
+        .project-square:nth-child(1) { top: 15%; left: 10%; transform: rotate(0deg); }
+        .project-square:nth-child(2) { top: 40%; left: 60%; transform: rotate(0deg); }
+        .project-square:nth-child(3) { top: 60%; left: 20%; transform: rotate(0deg); }
 
-        /* Hover effect to bring a 'photo' to the top */
+        /* 2. HOVER EFFECT: Make image slightly bigger and bring to front */
         .project-square:hover {
-            z-index: 100;
-            transform: scale(1.05) rotate(0deg);
+            z-index: 100; /* Moves it above the other photos */
+            transform: scale(1.1) rotate(0deg) !important; /* Scale 1.1 = 10% bigger */
+        }
+
+        /* 3. The hidden text overlay setup */
+        #love-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8); /* Slight transparent white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Also hide from interaction by default */
+            transition: opacity 0.4s ease, visibility 0.4s ease; /* Smooth fade-in */
+            z-index: 999; /* Higher than images, lower than navigation */
+        }
+
+        #love-overlay p {
+            font-family: 'Poppins', sans-serif; /* or 'Reenie Beanie' if you want it more like a note */
+            font-size: 3rem; /* Large text */
+            font-weight: 600;
+            color: #ff3366; /* or whatever color you prefer */
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Class that JavaScript will add/remove to trigger the effect */
+        .show-overlay {
+            opacity: 1 !important;
+            visibility: visible !important;
         }
     </style>
 </head>
@@ -63,23 +92,45 @@
         
         <div class="projects-container">
             <div class="project-square">
-                <img src="assets/images/houdini/IMG_0982.jpeg" alt="Placeholder">
-                <h3>Patchwork Jumper</h3>
-                <body>For this project, I worked off of the space time pattern, I think it looks really cute</body>
+                <img src="assets/images/houdini/IMG_0982.jpeg" alt="Patchwork Jumper">
             </div>
 
             <div class="project-square">
-                <img src="assets/images/houdini/IMG_1079.jpeg" alt="Placeholder">
-                <h3>Project Title</h3>
+                <img src="assets/images/houdini/IMG_1079.jpeg" alt="Houdini Work 2">
+                <h3>Houdini Work 2</h3>
             </div>
 
             <div class="project-square">
-                <img src="assets/images/houdini/IMG_1350.jpeg" alt="Placeholder">
-                <h3>Project Title</h3>
+                <img src="assets/images/houdini/IMG_1350.jpeg" alt="Houdini Work 3">
+                <h3>Houdini Work 3</h3>
             </div>
         </div>
     </main>
 
+    <div id="love-overlay">
+        <p>oh my god i love you so much</p>
+    </div>
+
 <script src="js/main.js"></script>
+
+<script>
+    // JavaScript to handle the text overlay effect
+    const squares = document.querySelectorAll('.project-square');
+    const overlay = document.getElementById('love-overlay');
+
+    // For each photo square...
+    squares.forEach(square => {
+        
+        // ...listen for the mouse ENTERING the photo
+        square.addEventListener('mouseenter', () => {
+            overlay.classList.add('show-overlay'); // Add the class that makes the text fade in
+        });
+
+        // ...listen for the mouse LEAVING the photo
+        square.addEventListener('mouseleave', () => {
+            overlay.classList.remove('show-overlay'); // Remove the class to hide the text again
+        });
+    });
+</script>
 </body>
 </html>
