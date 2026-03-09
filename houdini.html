@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houdini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        /* 1. Keep the Header Fixed and on top */
+        #header-placeholder {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: #fff; 
+            height: 60px; /* Adjust based on your actual nav height */
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        /* 2. The Container for the "Messy" Images */
+        .projects-wrapper {
+            position: relative;
+            width: 100%;
+            height: 120vh; /* Extra height to allow for vertical scattering */
+            padding-top: 50px;
+        }
+
+        .scatter-img {
+            position: absolute;
+            max-width: 280px;
+            height: auto;
+            border: 8px solid white;
+            box-shadow: 4px 8px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Bring image to front when hovered */
+        .scatter-img:hover {
+            z-index: 100 !important;
+            transform: scale(1.05) rotate(0deg) !important;
+        }
+
+        /* 3. Manually Set "Random" Positions */
+        /* Change these values to move images around permanently */
+        .pos-1 { top: 10%; left: 8%;  transform: rotate(-7deg);  z-index: 1; }
+        .pos-2 { top: 25%; left: 55%; transform: rotate(5deg);   z-index: 2; }
+        .pos-3 { top: 55%; left: 20%; transform: rotate(-12deg); z-index: 3; }
+        /* Add .pos-4, .pos-5 etc. if you add more images */
+
+    </style>
+</head>
+<body>
+
+    <header id="header-placeholder">
+        </header>
+
+    <main class="projects-wrapper">
+        <img src="assets/images/houdini/IMG_0982.jpeg" class="scatter-img pos-1" alt="Work">
+        <img src="assets/images/houdini/IMG_1079.jpeg" class="scatter-img pos-2" alt="Work">
+        <img src="assets/images/houdini/IMG_1350.jpeg" class="scatter-img pos-3" alt="Work">
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
