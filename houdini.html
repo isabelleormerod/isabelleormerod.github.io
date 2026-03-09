@@ -3,69 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Houdini</title>
+    <title>Personal Projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            overflow-x: hidden;
-        }
-
-        /* 1. Keep the Header Fixed and on top */
+        /* Ensuring the header stays visible and on top */
         #header-placeholder {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: #fff; 
-            height: 60px; /* Adjust based on your actual nav height */
-            border-bottom: 1px solid #eaeaea;
+            position: relative;
+            z-index: 1000;
         }
 
-        /* 2. The Container for the "Messy" Images */
-        .projects-wrapper {
+        /* The container becomes the scattered area */
+        .projects-container {
             position: relative;
             width: 100%;
-            height: 120vh; /* Extra height to allow for vertical scattering */
-            padding-top: 50px;
+            height: 100vh; /* Gives space for images to be 'dropped' */
+            padding: 50px;
         }
 
-        .scatter-img {
+        /* Each project-square becomes a scattered photo */
+        .project-square {
             position: absolute;
-            max-width: 280px;
-            height: auto;
-            border: 8px solid white;
-            box-shadow: 4px 8px 15px rgba(0,0,0,0.1);
+            background: white;
+            padding: 10px;
+            box-shadow: 5px 10px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
-        /* Bring image to front when hovered */
-        .scatter-img:hover {
-            z-index: 100 !important;
-            transform: scale(1.05) rotate(0deg) !important;
+        .project-square img {
+            display: block;
+            width: 250px; /* Control image size here */
+            height: auto;
         }
 
-        /* 3. Manually Set "Random" Positions */
-        /* Change these values to move images around permanently */
-        .pos-1 { top: 10%; left: 8%;  transform: rotate(-7deg);  z-index: 1; }
-        .pos-2 { top: 25%; left: 55%; transform: rotate(5deg);   z-index: 2; }
-        .pos-3 { top: 55%; left: 20%; transform: rotate(-12deg); z-index: 3; }
-        /* Add .pos-4, .pos-5 etc. if you add more images */
+        /* Hide the text content as requested */
+        .project-square h3, 
+        .project-square body {
+            display: none;
+        }
 
+        /* Specific Fixed Positions (These won't change on refresh) */
+        .project-square:nth-child(1) { top: 10%; left: 5%;  transform: rotate(-5deg); }
+        .project-square:nth-child(2) { top: 25%; left: 55%; transform: rotate(8deg); }
+        .project-square:nth-child(3) { top: 50%; left: 15%; transform: rotate(-10deg); }
+
+        /* Hover effect to bring a 'photo' to the top */
+        .project-square:hover {
+            z-index: 100;
+            transform: scale(1.05) rotate(0deg);
+        }
     </style>
 </head>
 <body>
 
-    <header id="header-placeholder">
-        </header>
+<header id="header-placeholder"></header>
 
-    <main class="projects-wrapper">
-        <img src="assets/images/houdini/IMG_0982.jpeg" class="scatter-img pos-1" alt="Work">
-        <img src="assets/images/houdini/IMG_1079.jpeg" class="scatter-img pos-2" alt="Work">
-        <img src="assets/images/houdini/IMG_1350.jpeg" class="scatter-img pos-3" alt="Work">
+    <main>
+        <h1 class="page-title">Houdini</h1>
+        
+        <div class="projects-container">
+            <div class="project-square">
+                <img src="assets/images/houdini/IMG_0982.jpeg" alt="Placeholder">
+                <h3>Patchwork Jumper</h3>
+                <body>For this project, I worked off of the space time pattern, I think it looks really cute</body>
+            </div>
+
+            <div class="project-square">
+                <img src="assets/images/houdini/IMG_1079.jpeg" alt="Placeholder">
+                <h3>Project Title</h3>
+            </div>
+
+            <div class="project-square">
+                <img src="assets/images/houdini/IMG_1350.jpeg" alt="Placeholder">
+                <h3>Project Title</h3>
+            </div>
+        </div>
     </main>
 
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
